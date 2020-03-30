@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.zs.ots.mapper.UserInfoMapper">
+    
+    <sql id="commonSql">
+           select id,uname,upwd,uaccount,urole
+    </sql>
+    
+    <select id="getPageUserInfo" parameterType="int" resultType="com.zs.ots.entity.User">
+        <include refid="commonSql"></include>
+        from
+            user
+        ORDER BY id DESC
+    </select>
+
+    <select id="getPageStuInfo" parameterType="int" resultType="com.zs.ots.entity.User">
+        <include refid="commonSql"></include>
+        from user
+        where urole = "学生"
+        ORDER BY id DESC
+    </select>
+
+    <select id="getAllUserInfo" resultType="com.zs.ots.entity.User">
+        <include refid="commonSql"></include>
+        from
+            user
+    </select>
+
+    <select id="getAllStuInfo" resultType="com.zs.ots.entity.User">
+        <include refid="commonSql"></include>
+        from
+            user
+        where urole = "学生"
+    </select>
+
+    <select id="verifyAccount" parameterType="java.lang.String" resultType="com.zs.ots.entity.User">
+        select
+            id
+        from
+            user
+        where  id!=#{uid}  and uaccount=#{uaccount}
+    </select>
+
+    <update id="alterUserInfo" parameterType="com.zs.ots.entity.User">
+        update  user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="uname!=null">
+                uname = #{uname},
+            </if>
+            <if test="uaccount!=null">
+                uaccount = #{uaccount},
+            </if>
+            <if test="upwd!=null">
+                upwd = #{upwd}
+            </if>
+        </trim>
+        where
+            id = #{id}
+    </update>
+
+    <delete id="removeStudent" parameterType="int">
+        delete from user
+        where
+            id = #{id}
+    </delete>
+
+    <select id="searchUserByAcc" parameterType="java.lang.String" resultType="com.zs.ots.entity.User">
+        <include refid="commonSql"></include>
+        from
+            user
+        where
+            uaccount like #{userAcc}
+    </select>
+
+
+</mapper>

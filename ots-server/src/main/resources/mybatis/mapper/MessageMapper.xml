@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!---->
+<mapper namespace="com.zs.ots.mapper.MessageMapper">
+<!--    映射结果集-->
+    <resultMap type="com.zs.ots.entity.Message" id="MessageInfo">
+        <id property="id" column="id"/>
+        <result property="mesUid" column="mes_uid"/>
+        <result property="mesUname" column="mes_uname"/>
+        <result property="mesTitle" column="mes_title"/>
+        <result property="mesContent" column="mes_content"/>
+        <result property="mesTime" column="mes_time"/>
+        <result property="mesUrole" column="mes_urole"/>
+    </resultMap>
+
+    <sql id="commonSql">
+           select id,mes_uid,mes_uname,mes_title,mes_content,mes_time,mes_urole
+    </sql>
+
+    <insert id="setMessageInfo" parameterType="com.zs.ots.entity.Message">
+        insert into mes_info(
+            mes_uid,
+            mes_uname,
+            mes_title,
+            mes_content,
+            mes_time,
+            mes_urole
+            )
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mesUid!=null">
+                #{mesUid},
+            </if>
+            <if test="mesUname!=null">
+                #{mesUname},
+            </if>
+                #{mesTitle},
+            <if test="mesContent!=null">
+                #{mesContent},
+            </if>
+            <if test="mesTime!=null">
+                #{mesTime},
+            </if>
+            <if test="mesUrole!=null">
+                #{mesUrole}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getPageMesInfo" resultMap="MessageInfo">
+        <include refid="commonSql"></include>
+        from
+            mes_info
+         ORDER BY id DESC
+    </select>
+
+    <select id="getAllMesInfo" resultMap="MessageInfo">
+        <include refid="commonSql"></include>
+        from
+            mes_info
+    </select>
+
+    <update id="updateMessage" parameterType="com.zs.ots.entity.Message">
+        update
+            mes_info
+        set
+            mes_content = #{mesContent}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteMessage" parameterType="int">
+        delete from
+            mes_info
+        where
+            id = #{id}
+    </delete>
+
+</mapper>
