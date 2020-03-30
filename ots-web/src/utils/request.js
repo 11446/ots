@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Loading} from 'element-ui'
 
+
 let loadingInstance
 const loading = {
     open: function(){
