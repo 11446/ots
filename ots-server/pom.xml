@@ -48,6 +48,7 @@
 			<version>1.2.4</version>
 		</dependency>
 
+<!--		数据库驱动-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -107,6 +108,13 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.7.0</version>
+		</dependency>
+
+<!--		添加druid连接池-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.16</version>
 		</dependency>
 	</dependencies>
 

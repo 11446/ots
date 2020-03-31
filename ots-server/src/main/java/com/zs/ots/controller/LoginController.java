@@ -1,5 +1,6 @@
 package com.zs.ots.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.zs.ots.entity.User;
 import com.zs.ots.mapper.LoginMapper;
 import com.zs.ots.service.LoginService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -29,6 +31,7 @@ public class LoginController {
     @ApiOperation(value = "用户登录")
     @PostMapping(value = "/login")
     public User verifyUser(@RequestBody User user) {
+
         User result = loginService.verifyUser(user);
         return result;
     }
