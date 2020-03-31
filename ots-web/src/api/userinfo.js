@@ -63,7 +63,7 @@ export function removeStudent(id){
 export function searchUserByAcc(userAcc){
     return request({
         url: 'http://localhost:8080/searchUserByAcc/',
-        method: 'get',
+        method: 'GET',
         params: {
             userAcc
         }
