@@ -5,6 +5,7 @@
 <!---->
 <mapper namespace="com.zs.ots.mapper.LoginMapper">
 
+
     <select id="verifyUser" parameterType="com.zs.ots.entity.User" resultType="com.zs.ots.entity.User">
         select
             id,uaccount,uname,urole
