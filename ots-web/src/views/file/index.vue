@@ -126,8 +126,8 @@ export default {
     },
     DownloadFile(row) {
       // 获取到了文件名称
-      this.DFileNama = row.file_name;
-      const url = "http://localhost:8080/download/" + row.file_name;
+      this.DFileNama = row.fileName;
+      const url = "http://localhost:8080/download/" + row.fileName;
       window.location.href = url;
     },
     // 移除文件信息

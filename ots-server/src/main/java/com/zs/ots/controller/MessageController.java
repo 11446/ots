@@ -3,6 +3,8 @@ package com.zs.ots.controller;
 import com.github.pagehelper.PageHelper;
 import com.zs.ots.entity.Message;
 import com.zs.ots.service.MessageService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,29 +17,20 @@ import java.util.List;
  */
 @RestController
 @RequestMapping
+@Api(tags = "留言信息功能")
 public class MessageController {
 
     @Autowired
     MessageService messageService;
 
-    /**
-     * 插入留言信息
-     *
-     * @param message
-     * @return
-     */
+    @ApiOperation(value = "插入留言信息")
     @PostMapping(value = "/setMessageInfo")
     public boolean setMessageInfo(@RequestBody Message message) {
         return messageService.setMessageInfo(message);
     }
 
-    /**
-     * 分页获取留言信息
-     *
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
+
+    @ApiOperation(value = "分页获取留言信息")
     @GetMapping(value = "/getPageMesInfo")
     public List<Message> getPageMesInfo(@RequestParam("pageNum") Integer pageNum,
                                         @RequestParam("pageSize") Integer pageSize) {
@@ -45,33 +38,20 @@ public class MessageController {
         return messageService.getPageMesInfo();
     }
 
-    /**
-     * 获取所有留言信息
-     *
-     * @return
-     */
+
+    @ApiOperation(value = "获取所有留言信息")
     @GetMapping(value = "/getAllMesInfo")
     public List<Message> getAllMesInfo() {
         return messageService.getAllMesInfo();
     }
 
-    /**
-     * 更改留言
-     *
-     * @param message
-     * @return
-     */
+    @ApiOperation(value = "修改留言信息")
     @PostMapping(value = "/updateMessage")
     public boolean updateMessage(@RequestBody Message message) {
         return messageService.updateMessage(message);
     }
 
-    /**
-     * 删除留言
-     *
-     * @param id
-     * @return
-     */
+    @ApiOperation(value = "删除留言")
     @GetMapping(value = "/deleteMessage")
     public boolean deleteMessage(@RequestParam("id") Integer id) {
         return messageService.deleteMessage(id);

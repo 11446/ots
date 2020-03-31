@@ -1,5 +1,7 @@
 package com.zs.ots.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,22 +19,16 @@ import java.io.*;
  */
 @RestController
 @RequestMapping
+@Api(tags = "文件的上传与下载")
 public class FileTransferController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileInfoController.class);
     private final static String fileDir = "E:/ots-download/";
     private final static String rootPath = "E:/ots-upload/";
 
-    /**
-     * 上传文件
-     *
-     * @param request
-     * @param resp
-     * @param files
-     * @return
-     * @throws IOException
-     */
-    @PostMapping("/upload")
+
+    @ApiOperation(value = "上传文件")
+    @GetMapping(value = "/upload")
     public boolean uploadWork(HttpServletRequest request,
                               HttpServletResponse resp,
                               @RequestParam(value = "file", required = false) MultipartFile[] files
@@ -59,14 +55,9 @@ public class FileTransferController {
     }
 
 
-    /**
-     * 文件下载
-     *
-     * @param fileName
-     * @param response
-     * @param request
-     */
-    @RequestMapping(value = "/download/{fileName}", method = RequestMethod.GET)
+
+    @ApiOperation(value = "文件下载")
+    @GetMapping(value = "/download/{fileName}")
     public void downloadFile(@PathVariable("fileName") String fileName, final HttpServletResponse response, final HttpServletRequest request) {
         System.out.println(fileName);
         OutputStream os = null;
@@ -110,14 +101,8 @@ public class FileTransferController {
         }
     }
 
-    /**
-     * 删除文件
-     *
-     * @param fileName
-     * @return
-     * @throws FileNotFoundException
-     */
-    @RequestMapping(value = "/removeFile", method = RequestMethod.GET)
+    @ApiOperation(value = "文件移除")
+    @GetMapping(value = "/removeFile")
     public Boolean delFile(@RequestParam("fileName") String fileName) throws FileNotFoundException {
         InputStream is = null;
         File f = new File(rootPath + fileName);

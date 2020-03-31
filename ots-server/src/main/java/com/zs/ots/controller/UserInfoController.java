@@ -3,6 +3,9 @@ package com.zs.ots.controller;
 import com.github.pagehelper.PageHelper;
 import com.zs.ots.entity.User;
 import com.zs.ots.service.UserInfoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +20,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping
+@Api(tags = "用户信息管理")
 public class UserInfoController {
 
     @Autowired
     UserInfoService userInfoService;
 
-    /**
-     * 分页查询用户信息
-     *
-     * @param PageNum
-     * @param PageSize
-     * @return
-     */
+
+    @ApiOperation(value = "分页查询用户信息")
     @GetMapping(value = "/getPageUserInfo")
     public List<User> getPageUserInfo(@RequestParam("PageNum") Integer PageNum,
                                       @RequestParam("PageSize") Integer PageSize,
@@ -44,11 +43,7 @@ public class UserInfoController {
         }
     }
 
-    /**
-     * 获取所有用户信息
-     *
-     * @return
-     */
+    @ApiOperation(value = "获取所有用户信息")
     @GetMapping(value = "/getAllUserInfo")
     public List<User> getAllUserInfo(@RequestParam("urole") String urole) {
 
@@ -61,13 +56,8 @@ public class UserInfoController {
         }
     }
 
-    /**
-     * 验证账号是否重复
-     *
-     * @param uaccount
-     * @param uid
-     * @return
-     */
+
+    @ApiOperation(value = "修改用户信息时验证信息是否重复")
     @GetMapping(value = "/verifyAccount")
     public boolean verifyAccount(@RequestParam(value = "uaccount", required = false) String uaccount,
                                  @RequestParam(value = "uid", required = false) String uid) {
@@ -80,34 +70,20 @@ public class UserInfoController {
         }
     }
 
-    /**
-     * 修改用户信息
-     *
-     * @param user
-     * @return
-     */
+    @ApiOperation(value = "修改用户信息")
     @PostMapping(value = "/alterUserInfo")
     public boolean alterUserInfo(@RequestBody User user) {
         return userInfoService.alterUserInfo(user);
     }
 
-    /**
-     * 删除用户
-     *
-     * @param id
-     * @return
-     */
+
+    @ApiOperation(value = "移除用户")
     @DeleteMapping(value = "/removeStudent")
     public Boolean removeStudent(@RequestParam("id") Integer id) {
         return userInfoService.removeStudent(id);
     }
 
-    /**
-     * 模糊查找用户
-     *
-     * @param userAcc
-     * @return
-     */
+    @ApiOperation(value = "用户模糊查找")
     @GetMapping(value = "/searchUserByAcc")
     public List<User> searchUserByAcc(@RequestParam("userAcc") String userAcc) {
         userAcc = "%" + userAcc + "%";

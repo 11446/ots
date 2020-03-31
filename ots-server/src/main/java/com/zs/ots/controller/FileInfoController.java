@@ -3,6 +3,8 @@ package com.zs.ots.controller;
 import com.github.pagehelper.PageHelper;
 import com.zs.ots.entity.FileInfo;
 import com.zs.ots.service.FileService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@Api(tags = "文件信息管理")
 public class FileInfoController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileInfoController.class);
@@ -26,13 +29,9 @@ public class FileInfoController {
     private FileService fileService;
 
 
-    /**
-     * 存储文件信息
-     *
-     * @param fileInfo
-     * @return
-     */
-    @PostMapping("/upload/fileinfo")
+
+    @ApiOperation(value = "存储文件信息")
+    @PostMapping(value = "/upload/fileinfo")
     public String getFileInfo(@RequestBody FileInfo fileInfo) {
         FileInfo f = fileService.isRepeatFileInfo(fileInfo);
         if (f != null) {
@@ -47,25 +46,16 @@ public class FileInfoController {
     }
 
 
-    /**
-     * 文件信息总条数查询查询
-     *
-     * @return
-     */
-    @GetMapping("/getAllFileInfo")
+
+    @ApiOperation(value = "文件信息总条数查询")
+    @GetMapping(value = "/getAllFileInfo")
     public Integer getAllFileInfo() {
         List<FileInfo> allFileInfo = fileService.getAllFileInfo();
         return allFileInfo.size();
     }
 
-    /**
-     * 分页查询文件信息
-     *
-     * @param PageNum
-     * @param PageSize
-     * @return
-     */
-    @GetMapping("/getPageFileInfo")
+    @ApiOperation(value = "分页查询文件信息")
+    @GetMapping(value = "/getPageFileInfo")
     public List<FileInfo> getPageFileInfo(@RequestParam("PageNum") Integer PageNum,
                                           @RequestParam("PageSize") Integer PageSize) {
         PageHelper.startPage(PageNum, PageSize);
@@ -73,25 +63,15 @@ public class FileInfoController {
         return fileInfos;
     }
 
-    /**
-     * 根据文件名模糊查找文件
-     *
-     * @param fileName
-     * @return fileInfos
-     */
-    @GetMapping("/searchFileByName/{fileName}")
+    @ApiOperation(value = "文件模糊查找")
+    @GetMapping(value = "/searchFileByName/{fileName}")
     public List<FileInfo> searchFileByName(@PathVariable("fileName") String fileName) {
         List<FileInfo> fileInfos = fileService.searchFileByName(fileName);
         return fileInfos;
     }
 
-    /**
-     * 移除文件信息
-     *
-     * @param delFileID
-     * @return
-     */
-    @RequestMapping(value = "/removeFileInfo", method = RequestMethod.GET)
+    @ApiOperation("移除文件信息")
+    @GetMapping(value = "/removeFileInfo")
     public boolean removeFileInfo(@RequestParam("fileID") Integer delFileID) {
         boolean result = fileService.removeFileInfo(delFileID);
         return result;
