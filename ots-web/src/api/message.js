@@ -3,7 +3,7 @@ import request from '../utils/request'
 // 存入留言信息
 export function setMessageInfo(mesInfo){
     return request({
-        url: 'http://localhost:8080/setMessageInfo/',
+        url: '/setMessageInfo/',
         method: 'POST',
         data: mesInfo 
         
@@ -14,7 +14,7 @@ export function setMessageInfo(mesInfo){
 // 获取第一页的留言信息
 export function getPageMesInfo(pageNum, pageSize){
     return  request({
-        url:'http://localhost:8080/getPageMesInfo/',
+        url:'/getPageMesInfo/',
         method:'GET',
         params: {
             pageNum,
@@ -26,7 +26,7 @@ export function getPageMesInfo(pageNum, pageSize){
 // 获取所有留言信息
 export function getAllMesInfo(){
     return request({
-        url: 'http://localhost:8080/getAllMesInfo/',
+        url: '/getAllMesInfo/',
         method: 'GET'      
     })
 }
@@ -35,7 +35,7 @@ export function getAllMesInfo(){
 // 修改留言
 export function updateMessage(mesInfo){
     return request({
-        url: 'http://localhost:8080/updateMessage',
+        url: '/updateMessage',
         method: 'POST',
         data: mesInfo
     })
@@ -44,7 +44,7 @@ export function updateMessage(mesInfo){
 // 删除留言
 export function deleteMessage(id){
     return request({
-        url: 'http://localhost:8080/deleteMessage',
+        url: '/deleteMessage',
         method: 'GET',
         params: {
             id

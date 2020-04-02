@@ -23,12 +23,15 @@ import java.io.*;
 public class FileTransferController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileInfoController.class);
+//    上传文件存放路径
     private final static String fileDir = "E:/ots-download/";
     private final static String rootPath = "E:/ots-upload/";
+//    private final static String fileDir = "/ots/upload_file/";
+//    private final static String rootPath = "/ots/download_file/";
 
 
     @ApiOperation(value = "上传文件")
-    @GetMapping(value = "/upload")
+    @PostMapping(value = "/upload")
     public boolean uploadWork(HttpServletRequest request,
                               HttpServletResponse resp,
                               @RequestParam(value = "file", required = false) MultipartFile[] files
@@ -40,11 +43,10 @@ public class FileTransferController {
             }
             System.out.println("准备上传文件");
             // 上传文件存放路径
-            String path = "E:/ots-upload/";
 
             System.out.println("开始上传文件！");
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(
-                    new File(path + file.getOriginalFilename())));
+                    new File(fileDir + file.getOriginalFilename())));
             bos.write(file.getBytes());
             bos.flush();
             bos.close();
@@ -71,7 +73,7 @@ public class FileTransferController {
             response.setContentType("application/octet-stream");
             response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("utf-8"), "iso-8859-1"));
             //读取流
-            File f = new File(rootPath + fileName);
+            File f = new File(fileDir + fileName);
             is = new FileInputStream(f);
             if (is == null) {
                 logger.error("下载附件失败，请检查文件“" + fileName + "”是否存在");
@@ -105,8 +107,8 @@ public class FileTransferController {
     @GetMapping(value = "/removeFile")
     public Boolean delFile(@RequestParam("fileName") String fileName) throws FileNotFoundException {
         InputStream is = null;
-        File f = new File(rootPath + fileName);
-        System.out.println(rootPath + fileName);
+        File f = new File(fileDir + fileName);
+        System.out.println(fileDir + fileName);
         if (f.exists()) {
             if (f.delete()) {
                 return true;

@@ -1,18 +1,18 @@
 module.exports = {
     devServer: {
-        port: 8888,   // 端口号
-        host: "127.0.0.1",   // 主机地址
+        port: 8888,   // Vue启动端口号
+        host: "localhost",   // 主机地址
         https: false,  // 协议
         open: true,  // 启动服务时自动打开浏览器访问
-        proxy: {  // 开发环境代理设置
-            '/dev-api': {
-                target: 'http://localhost:8080',
-                changeOrigin: true,  // 目标服务器地址
-                pathRewrite: {   
-                    '^/dev-api': '',
-                }
-            }
-        }
+        // proxy: {  // 开发环境代理设置
+        //     '/dev-api': {
+        //         target: 'http://47.93.189.114:8080',
+        //         changeOrigin: true,  // 目标服务器地址
+        //         pathRewrite: {   
+        //             '^/dev-api': '',
+        //         }
+        //     }
+        // }
 
     },
     lintOnSave: false,  // 关闭代码规范检查

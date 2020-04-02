@@ -4,8 +4,9 @@ import request from '../utils/request'
 export function userLogin(uaccount,upwd ){
     console.log("调用了用户登录登录接口！")
     return request({
-        url: 'http://localhost:8080/login',
-        method: 'post', 
+        url: '/login/',
+        // 47.93.189.114
+        method: 'POST', 
         data: {
             uaccount,   // uname   =   uname:uname
             upwd

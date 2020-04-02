@@ -1,6 +1,8 @@
 <template>
   <div>
-      <!-- 上传文件组件 -->
+      <!-- 上传文件组件 
+      http://47.93.189.114:8080/upload/
+      -->
     <el-upload
         class="upload-demo"
         drag
@@ -8,7 +10,7 @@
         :on-success="onSuccess"
         :on-error="onError"
         multiple
-        action="http://localhost:8080/upload/"     
+        action="http://47.93.189.114:8080/upload"     
         :data="uploadData"
         style="position: absolute; margin-left: 100px;"
       >
@@ -89,6 +91,8 @@ p{
 </style>
 <script>
 import axios from 'axios'
+import {setFileInfo} from '@/api/file'
+import { fileRemove } from '../../api/file'
 export default {
     data(){
       return{
@@ -103,12 +107,17 @@ export default {
     },
     methods: {
     // 文件上传之前的钩子
-      beforeUpload(file, fileList){   
+      beforeUpload(file){ 
+        // 重置uploadData的对象数据
+        this.uploadData = this.$options.data().uploadData
+
+
         if(file.size == 0){
           this.$message.error("禁止上传空文件")
           return false
         }else{
         this.uploadData.fileName = file.name
+        console.log(this.uploadData.fileName)
         if(Math.floor(file.size/1000)>1024){
           let a = Math.floor(file.size/1000)
           this.uploadData.fileSize = Math.floor(a/1024)+"MB"
@@ -117,8 +126,9 @@ export default {
         }
         this.uploadData.uploadUser = JSON.parse(localStorage.getItem('user-info')).uname
         this.uploadData.uploadTime = this.getNowFormatDate()
-        axios.post("http://localhost:8080/upload/fileinfo", this.uploadData).then(resp=>{
-          console.log(resp)
+        console.log(this.uploadData)
+       setFileInfo(this.uploadData).then(resp=>{
+          // console.log(resp)
         })
         }
 
@@ -126,7 +136,7 @@ export default {
 
       // 上传文件成功后的钩子函数
       onSuccess(response, file, fileList){  
-        console.log(file)     
+        // console.log(file)     
         // 上传文件成功后，显示提示信息
         if(response){
         this.$message({message: '上传文件：'+file.name+"成功！",type: 'success' }); 

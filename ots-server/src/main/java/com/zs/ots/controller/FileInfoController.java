@@ -34,12 +34,10 @@ public class FileInfoController {
     @PostMapping(value = "/upload/fileinfo")
     public String getFileInfo(@RequestBody FileInfo fileInfo) {
         FileInfo f = fileService.isRepeatFileInfo(fileInfo);
+        System.out.println("准备写入："+fileInfo);
         if (f != null) {
-            System.out.println("文件重复！");
             return "添加文件信息成功！";
         } else {
-            System.out.println(fileInfo);
-            System.out.println("写入文件信息：" + fileInfo);
             fileService.setFileInfo(fileInfo);
             return "添加文件信息成功！";
         }
@@ -64,8 +62,8 @@ public class FileInfoController {
     }
 
     @ApiOperation(value = "文件模糊查找")
-    @GetMapping(value = "/searchFileByName/{fileName}")
-    public List<FileInfo> searchFileByName(@PathVariable("fileName") String fileName) {
+    @GetMapping(value = "/searchFileByName")
+    public List<FileInfo> searchFileByName(@RequestParam("fileName") String fileName) {
         List<FileInfo> fileInfos = fileService.searchFileByName(fileName);
         return fileInfos;
     }

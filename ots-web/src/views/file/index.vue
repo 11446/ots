@@ -77,7 +77,8 @@ import {
   getPageFileInfo,
   fileRemove,
   removeFileInfo,
-  getAllFileInfo
+  getAllFileInfo,
+  searchFileByName,
 } from "../../api/file";
 import axios from "axios";
 export default {
@@ -116,9 +117,7 @@ export default {
       if (this.fileName == "") {
         this.page(this.thePage);
       } else {
-        axios
-          .get("http://localhost:8080/searchFileByName/" + this.fileName)
-          .then(resp => {
+        searchFileByName(this.fileName).then(resp => {
             this.tableData = resp.data;
             this.AllFileInfoNum = Math.ceil(resp.data.length / 6);
           });
@@ -127,7 +126,7 @@ export default {
     DownloadFile(row) {
       // 获取到了文件名称
       this.DFileNama = row.fileName;
-      const url = "http://localhost:8080/download/" + row.fileName;
+      const url = "http://47.93.189.114:8080/download/" + row.fileName;
       window.location.href = url;
     },
     // 移除文件信息

@@ -15,8 +15,9 @@ const loading = {
 
 }
 const request = axios.create({
-    baseURL: '/',
-    timeout: 5000
+    baseURL: 'http://localhost:8080',
+    // 47.93.189.114
+    timeout: 5000,
 })
 
 // 请求拦截器

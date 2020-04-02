@@ -38,18 +38,19 @@ public class MessageController {
         return messageService.getPageMesInfo();
     }
 
-
     @ApiOperation(value = "获取所有留言信息")
     @GetMapping(value = "/getAllMesInfo")
     public List<Message> getAllMesInfo() {
         return messageService.getAllMesInfo();
     }
 
+
     @ApiOperation(value = "修改留言信息")
     @PostMapping(value = "/updateMessage")
     public boolean updateMessage(@RequestBody Message message) {
         return messageService.updateMessage(message);
     }
+
 
     @ApiOperation(value = "删除留言")
     @GetMapping(value = "/deleteMessage")
