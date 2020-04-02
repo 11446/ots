@@ -7,19 +7,19 @@
     </el-page-header> -->
     <!-- 过渡动画 -->
     <transition name="fade-transform" mode="out-in">
-      <router-view></router-view>
+      <router-view />
     </transition>
   </div>
 </template>
 <script>
 export default {
   created() {
-    this.$Loading.start();
+    this.$Loading.start()
   },
   mounted() {
-    this.$Loading.finish();
+    this.$Loading.finish()
   }
-};
+}
 </script>
 <style scoped>
 .main {

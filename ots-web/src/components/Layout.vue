@@ -1,34 +1,33 @@
 <template>
   <div>
-    <app-header></app-header>
-    <app-navbar></app-navbar>
-    <app-main></app-main>
+    <app-header />
+    <app-navbar />
+    <app-main />
   </div>
 </template>
 
 <script>
-import AppHeader from "./AppHeader";
-import AppNavbar from "./AppNavbar";
-import AppMain from "./AppMain";
+import AppHeader from './AppHeader'
+import AppNavbar from './AppNavbar'
+import AppMain from './AppMain'
 
 export default {
-  name: "",
-  props: [""],
-  data() {
-    return {};
-  },
+  name: '',
 
   components: { AppHeader, AppNavbar, AppMain },
+  data() {
+    return {}
+  },
 
   computed: {},
+
+  watch: {},
 
   beforeMount() {},
 
   mounted() {},
 
-  methods: {},
-
-  watch: {}
-};
+  methods: {}
+}
 </script>
 <style scoped></style>

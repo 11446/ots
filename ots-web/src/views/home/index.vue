@@ -4,14 +4,15 @@
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>卡片名称</span>
-        <el-button style="float: right; padding: 3px 0" type="text"
-          >操作按钮</el-button
-        >
+        <el-button
+          style="float: right; padding: 3px 0"
+          type="text"
+        >操作按钮</el-button>
       </div>
       <div v-for="o in 4" :key="o" class="text item">
         {{ "列表内容 " + o }}
       </div>
-      <el-collapse v-model="activeNames" @change="handleChange"> </el-collapse>
+      <el-collapse v-model="activeNames" @change="handleChange" />
     </el-card>
   </div>
 </template>
@@ -44,13 +45,13 @@ h1 {
 export default {
   data() {
     return {
-      activeNames: ["1"]
-    };
+      activeNames: ['1']
+    }
   },
   methods: {
     handleChange(val) {
-      console.log(val);
+      console.log(val)
     }
   }
-};
+}
 </script>

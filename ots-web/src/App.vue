@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade-transform" mode="out-in">
       <!-- 组件渲染出口 -->
-      <router-view></router-view>
+      <router-view />
     </transition>
   </div>
 </template>

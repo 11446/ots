@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img class="timg" src="../assets/uugai.com_1583153838790.png" />
+    <img class="timg" src="../assets/uugai.com_1583153838790.png">
     <!-- :router：开启路由模式    default-active：默认选中   -->
     <el-menu
       :router="true"
@@ -12,30 +12,30 @@
     >
       <!-- 首页 -->
       <el-menu-item index="/home/">
-        <i class="el-icon-s-home"></i>
+        <i class="el-icon-s-home" />
         <span slot="title">首页</span>
       </el-menu-item>
 
       <!-- 文件管理 -->
       <el-menu-item index="/file/">
-        <i class="el-icon-reading"></i>
+        <i class="el-icon-reading" />
         <span slot="title">文件列表</span>
       </el-menu-item>
 
       <el-menu-item index="/upload/">
-        <i class="el-icon-upload"></i>
+        <i class="el-icon-upload" />
         <span slot="title">上传文件</span>
       </el-menu-item>
       <!-- <el-menu-item index="/goods/">
         <i class="el-icon-s-goods"></i>
         <span slot="title">文档分类</span>
       </el-menu-item> -->
-      <el-menu-item index="/user/" v-if="urole == '教师' || urole == 'admin'">
-        <i class="el-icon-s-custom"></i>
+      <el-menu-item v-if="urole == '教师' || urole == 'admin'" index="/user/">
+        <i class="el-icon-s-custom" />
         <span slot="title">用户管理</span>
       </el-menu-item>
       <el-menu-item index="/board/">
-        <i class="el-icon-notebook-2"></i>
+        <i class="el-icon-notebook-2" />
         <span slot="title">留言板</span>
       </el-menu-item>
     </el-menu>
@@ -69,8 +69,8 @@
 export default {
   data() {
     return {
-      urole: JSON.parse(localStorage.getItem("user-info")).urole
-    };
+      urole: JSON.parse(localStorage.getItem('user-info')).urole
+    }
   }
-};
+}
 </script>

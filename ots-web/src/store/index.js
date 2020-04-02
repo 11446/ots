@@ -4,11 +4,10 @@ import Vuex from 'vuex'
 import userinfo from './modules/userinfo'
 Vue.use(Vuex)
 
-
 const store = new Vuex.Store({
-    modules:{
-        userinfo 
-    }
+  modules: {
+    userinfo
+  }
 })
 
 // 在这里导出之后，就可以在别的组件里使用store的状态了

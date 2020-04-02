@@ -13,7 +13,7 @@
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
-          <i class="iconfont icon-guanliyuan"></i>
+          <i class="iconfont icon-guanliyuan" />
         </span>
         <el-input
           v-model="loginForm.username"
@@ -27,7 +27,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <i class="iconfont icon-mima"></i>
+          <i class="iconfont icon-mima" />
         </span>
         <el-input
           v-model="loginForm.password"
@@ -45,8 +45,7 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-        >登录</el-button
-      >
+      >登录</el-button>
     </el-form>
 
     <div class="copyright">
@@ -57,38 +56,38 @@
 </template>
 
 <script>
-import { userLogin } from "@/api/login";
+import { userLogin } from '@/api/login'
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       loginForm: {
-        username: "admin",
-        password: "admin123"
+        username: 'admin',
+        password: 'admin123'
       },
       loginRules: {
         username: [
-          { required: true, message: "管理员账户不允许为空", trigger: "blur" },
+          { required: true, message: '管理员账户不允许为空', trigger: 'blur' },
           {
             min: 5,
             max: 15,
-            message: "长度在 5 到 15 个字符之间",
-            trigger: ["blur", "change"]
+            message: '长度在 5 到 15 个字符之间',
+            trigger: ['blur', 'change']
           }
         ],
         password: [
-          { required: true, message: "管理员密码不允许为空", trigger: "blur" },
+          { required: true, message: '管理员密码不允许为空', trigger: 'blur' },
           {
             pattern: /^[a-zA-Z]\w{7,17}$/,
             message:
-              "以字母开头，长度在 8 到 18 个字符之间，只能包含字母、数字和下划线",
-            trigger: ["blur", "change"]
+              '以字母开头，长度在 8 到 18 个字符之间，只能包含字母、数字和下划线',
+            trigger: ['blur', 'change']
           }
         ]
       },
-      passwordType: "password",
+      passwordType: 'password',
       loading: false
-    };
+    }
   },
 
   methods: {
@@ -98,24 +97,24 @@ export default {
           userLogin(this.loginForm.username, this.loginForm.password).then(
             resp => {
               if (resp.data) {
-                localStorage.setItem("user-info", JSON.stringify(resp.data));
-                this.$router.push({ path: "/file" });
-                resp.data = null;
+                localStorage.setItem('user-info', JSON.stringify(resp.data))
+                this.$router.push({ path: '/file' })
+                resp.data = null
               } else {
                 this.$notify({
-                  title: "登陆失败",
-                  message: "账号或密码错误，请核实后重新登录",
-                  type: "error",
+                  title: '登陆失败',
+                  message: '账号或密码错误，请核实后重新登录',
+                  type: 'error',
                   duration: 1000
-                });
+                })
               }
             }
-          );
+          )
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
