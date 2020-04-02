@@ -1,12 +1,12 @@
 import Vue from "vue";
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 import App from "./App.vue";
 import router from "./router";
-import ViewUI from 'view-design';
-import 'view-design/dist/styles/iview.css';
-import './permission'
-import './assets/iconfont/iconfont.css'
+import ViewUI from "view-design";
+import "view-design/dist/styles/iview.css";
+import "./permission";
+import "./assets/iconfont/iconfont.css";
 
 // 引入ElementUI组件库
 Vue.use(ElementUI);
@@ -21,10 +21,9 @@ router.beforeEach((to, from, next) => {
   next();
 });
 // 路由跳转之后
-router.afterEach(route => {
+router.afterEach(() => {
   ViewUI.LoadingBar.finish();
 });
-
 
 new Vue({
   router,

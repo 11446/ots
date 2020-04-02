@@ -6,24 +6,22 @@
     <!-- <el-page-header v-show="$route.path !== '/home'" @back="goBack" :content="$route.meta.title">
     </el-page-header> -->
     <!-- 过渡动画 -->
-    <transition name="fade-transform" mode="out-in">         
+    <transition name="fade-transform" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
 </template>
 <script>
 export default {
-  
-  created(){
-            this.$Loading.start()
+  created() {
+    this.$Loading.start();
   },
-  mounted(){
-            this.$Loading.finish()
-
+  mounted() {
+    this.$Loading.finish();
   }
-}
+};
 </script>
-<style  scoped>
+<style scoped>
 .main {
   position: absolute;
   left: 200px;
@@ -33,7 +31,6 @@ export default {
   padding: 18px;
   overflow-y: auto;
   /* background-image: url('../assets/印度尼西亚Kelingking Beach海滩风景5k壁纸_彼岸图网.jpg') */
-
 }
 .el-breadcrumb {
   height: 10px;
@@ -41,14 +38,14 @@ export default {
   padding-bottom: 30px;
   border-radius: 5px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  background-color: white
+  background-color: white;
 }
 .line {
   border-left: 3px solid #31c17b;
   padding-left: 10px;
-} 
+}
 </style>
-<style scope lang='scss'>
+<style scope lang="scss">
 // global transition css
 
 /* fade */
@@ -65,7 +62,7 @@ export default {
 /* fade-transform */
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .fade-transform-enter {
@@ -81,7 +78,7 @@ export default {
 /* breadcrumb transition */
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .breadcrumb-enter,
@@ -91,7 +88,7 @@ export default {
 }
 
 .breadcrumb-move {
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .breadcrumb-leave-active {

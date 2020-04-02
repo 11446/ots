@@ -13,35 +13,64 @@
           icon="el-icon-circle-plus-outline"
           @click="addUser"
           size="small"
-        >添加用户</el-button>
+          >添加用户</el-button
+        >
       </el-form-item>
       <el-form-item>
         <el-input v-model="userAcc" placeholder="账号" size="small"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="small" @click="searchUserByAcc" icon="el-icon-search">模糊查询</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="searchUserByAcc"
+          icon="el-icon-search"
+          >模糊查询</el-button
+        >
         <el-button @click="reload" size="small">查询全部</el-button>
       </el-form-item>
     </el-form>
     <!-- 中心数据  -->
     <el-table :data="userData" border style="width: 100%">
-      <el-table-column align="center" type="index" :index="indexMethod" label="序号"></el-table-column>
-      <el-table-column align="center" prop="uname" label="姓名" width="180px"></el-table-column>
-      <el-table-column align="center" prop="uaccount" label="账号"></el-table-column>
-      <el-table-column align="center" prop="upwd" label="密码"></el-table-column>
+      <el-table-column
+        align="center"
+        type="index"
+        :index="indexMethod"
+        label="序号"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="uname"
+        label="姓名"
+        width="180px"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="uaccount"
+        label="账号"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="upwd"
+        label="密码"
+      ></el-table-column>
 
       <el-table-column
         prop="urole"
         label="角色"
         align="center"
-        :filters="[{ text: '学生', value: '学生' }, { text: '教师', value: '教师' }]"
+        :filters="[
+          { text: '学生', value: '学生' },
+          { text: '教师', value: '教师' }
+        ]"
         :filter-method="filterTag"
       >
         <template slot-scope="scope">
           <el-tag
             :type="scope.row.urole === '学生' ? 'primary' : 'success'"
             disable-transitions
-          >{{scope.row.urole}}</el-tag>
+            >{{ scope.row.urole }}</el-tag
+          >
         </template>
       </el-table-column>
 
@@ -52,13 +81,15 @@
             type="success"
             @click="updateUserPwd(scope.row)"
             style="background-color:#1890ff; border-color:#1890ff"
-          >修改</el-button>
+            >修改</el-button
+          >
           <el-button
             size="mini"
             type="danger"
             @click="removedUser(scope.row)"
             style="background-color:red; border-color:red"
-          >移除</el-button>
+            >移除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -89,16 +120,30 @@
         class="demo-ruleForm"
       >
         <el-form-item label="姓名" prop="uname">
-          <el-input type="text" v-model="ruleForm.uname" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.uname"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="账户" prop="uaccount">
-          <el-input type="text" v-model="ruleForm.uaccount" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.uaccount"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="upwd">
-          <el-input type="text" v-model="ruleForm.upwd" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.upwd"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')"
+            >提交</el-button
+          >
           <el-button @click="cancle('ruleForm')">取消</el-button>
         </el-form-item>
       </el-form>
@@ -120,13 +165,25 @@
         label-width="100px"
       >
         <el-form-item label="姓名" prop="uname">
-          <el-input type="text" v-model="ruleForm.uname" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.uname"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="账户" prop="uaccount">
-          <el-input type="text" v-model="ruleForm.uaccount" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.uaccount"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="upwd">
-          <el-input type="text" v-model="ruleForm.upwd" autocomplete="off"></el-input>
+          <el-input
+            type="text"
+            v-model="ruleForm.upwd"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <el-form-item label="角色" prop="urole">
           <el-select v-model="roleValue" placeholder="请选择">
@@ -140,7 +197,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitAddUserForm('ruleForm')">提交</el-button>
+          <el-button type="primary" @click="submitAddUserForm('ruleForm')"
+            >提交</el-button
+          >
           <el-button @click="cancle('ruleForm')">取消</el-button>
         </el-form-item>
       </el-form>
@@ -165,7 +224,8 @@ export default {
   //   钩子函数请求第一页用户信息数据
   created() {
     const urole = JSON.parse(localStorage.getItem("user-info")).urole;
-    axios.all([
+    axios
+      .all([
         getPageUserInfo(this.page_data.PageNum, this.page_data.PageSize, urole),
         getAllUserInfo(urole)
       ])
@@ -174,10 +234,7 @@ export default {
           this.userData = acct.data;
           this.AllUserInfoNum = perms.data.length;
         })
-      )
-      .catch(val => {
-        Message("服务器出现错误！", "error")
-      });
+      );
   },
   methods: {
     // 改变每页条数
@@ -193,7 +250,7 @@ export default {
       return row.urole === value;
     },
     //  取消修改
-    cancle(ruleForm) {
+    cancle() {
       this.dialogFormVisible = false;
       this.addUserDialog = false;
       this.ruleForm.id = "";
@@ -219,7 +276,7 @@ export default {
               this.addUserDialog = false;
             } else {
               this.addUserDialog = false;
-              this.$message({type: "success", message: "添加失败"});
+              this.$message({ type: "success", message: "添加失败" });
             }
           });
         } else {
@@ -291,10 +348,14 @@ export default {
         type: "warning",
         center: true
       })
-        .then(action => {
+        .then(() => {
           removeStudent(row.id).then(resp => {
             if (resp.data) {
-              this.$message({message: "删除成功",type: "success",duration: 2000});
+              this.$message({
+                message: "删除成功",
+                type: "success",
+                duration: 2000
+              });
               this.page(this.thePage);
             } else {
               alert("删除用户失败！");
@@ -302,7 +363,7 @@ export default {
           });
         })
         .catch(() => {
-          this.$message({type: "info",message: "已取消移除"});
+          this.$message({ type: "info", message: "已取消移除" });
         });
     },
     // 索引格式化

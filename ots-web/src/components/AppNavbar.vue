@@ -1,48 +1,48 @@
 <template>
   <div class="navbar">
-    <img class="timg" src="../assets/uugai.com_1583153838790.png">
+    <img class="timg" src="../assets/uugai.com_1583153838790.png" />
     <!-- :router：开启路由模式    default-active：默认选中   -->
-     <el-menu
-      :router="true"   
+    <el-menu
+      :router="true"
       default-active="/file/"
       class="el-menu-vertical-demo"
       background-color="#304156"
       text-color="#ffffff"
       active-text-color="#409eff"
     >
-    <!-- 首页 -->
+      <!-- 首页 -->
       <el-menu-item index="/home/">
         <i class="el-icon-s-home"></i>
         <span slot="title">首页</span>
       </el-menu-item>
 
-    <!-- 文件管理 -->
-       <el-menu-item index="/file/">
+      <!-- 文件管理 -->
+      <el-menu-item index="/file/">
         <i class="el-icon-reading"></i>
         <span slot="title">文件列表</span>
-      </el-menu-item> 
+      </el-menu-item>
 
-       <el-menu-item index="/upload/">
+      <el-menu-item index="/upload/">
         <i class="el-icon-upload"></i>
         <span slot="title">上传文件</span>
-      </el-menu-item> 
-       <!-- <el-menu-item index="/goods/">
+      </el-menu-item>
+      <!-- <el-menu-item index="/goods/">
         <i class="el-icon-s-goods"></i>
         <span slot="title">文档分类</span>
       </el-menu-item> -->
-       <el-menu-item index="/user/" v-if = " urole == '教师' || urole == 'admin' " >
+      <el-menu-item index="/user/" v-if="urole == '教师' || urole == 'admin'">
         <i class="el-icon-s-custom"></i>
         <span slot="title">用户管理</span>
       </el-menu-item>
-       <el-menu-item index="/board/">
+      <el-menu-item index="/board/">
         <i class="el-icon-notebook-2"></i>
         <span slot="title">留言板</span>
       </el-menu-item>
-    </el-menu> 
+    </el-menu>
   </div>
 </template>
 
-<style  scoped>
+<style scoped>
 .navbar {
   position: absolute;
   width: 200px;
@@ -52,25 +52,25 @@
   overflow-y: auto;
   background-color: #304156;
 }
-.el-menu{border-right: none}
-.el-menu-item{
-  font-family: '宋体';
-  font-size: 17px;
-
+.el-menu {
+  border-right: none;
 }
-.timg{
+.el-menu-item {
+  font-family: "宋体";
+  font-size: 17px;
+}
+.timg {
   position: relative;
   margin-top: 5px;
-  width: 200px
+  width: 200px;
 }
-
 </style>
 <script>
 export default {
-  data(){
-    return{
-      urole: JSON.parse(localStorage.getItem('user-info')).urole
-    }
+  data() {
+    return {
+      urole: JSON.parse(localStorage.getItem("user-info")).urole
+    };
   }
-}
+};
 </script>

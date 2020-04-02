@@ -9,31 +9,68 @@
       style="margin-top: 13px ; height: 50px"
     >
       <el-form-item>
-        <el-button type="primary" icon="el-icon-s-promotion" @click="test" size="small">上传文件</el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-s-promotion"
+          @click="test"
+          size="small"
+          >上传文件</el-button
+        >
       </el-form-item>
       <el-form-item>
-        <el-input size="small" v-model="fileName" placeholder="文件名称"></el-input>
+        <el-input
+          size="small"
+          v-model="fileName"
+          placeholder="文件名称"
+        ></el-input>
       </el-form-item>
       <el-form-item style="height: 10px">
-        <el-button type="primary" size="small" @click="searchFileByName" icon="el-icon-search" @keyup.enter.native="searchFileByName">模糊查询</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="searchFileByName"
+          icon="el-icon-search"
+          @keyup.enter.native="searchFileByName"
+          >模糊查询</el-button
+        >
         <el-button @click="reload" size="small">查询全部</el-button>
       </el-form-item>
     </el-form>
     <!-- 中心数据 -->
     <el-table :border="true" :data="tableData" style="width: 100%">
       <!-- <el-table-column  type="selection"></el-table-column> -->
-      <el-table-column align="center" type="index" :index="indexMethod" label="序号"></el-table-column>
-      <el-table-column align="center" prop="fileName" label="文件名称" width="180px"></el-table-column>
-      <el-table-column align="center" prop="fileSize" label="文件大小" width="100px"></el-table-column>
-      <el-table-column align="center" prop="fileDetail" label="文件描述" empty-text="暂无数据"></el-table-column>
+      <el-table-column
+        align="center"
+        type="index"
+        :index="indexMethod"
+        label="序号"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="fileName"
+        label="文件名称"
+        width="180px"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="fileSize"
+        label="文件大小"
+        width="100px"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="fileDetail"
+        label="文件描述"
+        empty-text="暂无数据"
+      ></el-table-column>
       <el-table-column align="center" prop="uploadUser" label="上传人">
         <template slot-scope="scope">
-          <el-tag disable-transitions>{{scope.row.uploadUser}}</el-tag>
+          <el-tag disable-transitions>{{ scope.row.uploadUser }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="upload_time" label="上传日期">
         <template slot-scope="scope">
-          <el-tag disable-transitions>{{scope.row.uploadTime}}</el-tag>
+          <el-tag disable-transitions>{{ scope.row.uploadTime }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作">
@@ -43,14 +80,16 @@
             type="success"
             @click="DownloadFile(scope.row)"
             style="background-color:#3ee83e; border-color:#3ee83e"
-          >下载</el-button>
+            >下载</el-button
+          >
           <el-button
             size="mini"
-            v-if="username == '教师'||'admin'"
+            v-if="username == '教师' || 'admin'"
             type="danger"
             @click="RemovedFile(scope.row)"
             style="background-color:red; border-color:red"
-          >移除</el-button>
+            >移除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -66,7 +105,7 @@
     ></el-pagination>
   </div>
 </template>
-<style  scoped>
+<style scoped>
 .el-pagination {
   padding-top: 30px;
   padding-left: 0px;
@@ -78,7 +117,7 @@ import {
   fileRemove,
   removeFileInfo,
   getAllFileInfo,
-  searchFileByName,
+  searchFileByName
 } from "../../api/file";
 import axios from "axios";
 export default {
@@ -97,7 +136,7 @@ export default {
         })
       )
       .catch(val => {
-        console.log(val)
+        console.log(val);
       });
   },
   methods: {
@@ -118,9 +157,9 @@ export default {
         this.page(this.thePage);
       } else {
         searchFileByName(this.fileName).then(resp => {
-            this.tableData = resp.data;
-            this.AllFileInfoNum = Math.ceil(resp.data.length / 6);
-          });
+          this.tableData = resp.data;
+          this.AllFileInfoNum = Math.ceil(resp.data.length / 6);
+        });
       }
     },
     DownloadFile(row) {
@@ -137,7 +176,7 @@ export default {
         type: "warning",
         center: true
       })
-        .then(action => {
+        .then(() => {
           fileRemove(row.fileName).then(resp => {
             if (resp.data) {
               // 如果本地文件删除成功，则删除数据库中的文件信息

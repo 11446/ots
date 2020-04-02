@@ -45,7 +45,8 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-      >登录</el-button>
+        >登录</el-button
+      >
     </el-form>
 
     <div class="copyright">
@@ -60,7 +61,6 @@ import { userLogin } from "@/api/login";
 export default {
   name: "Login",
   data() {
-
     return {
       loginForm: {
         username: "admin",
@@ -80,7 +80,8 @@ export default {
           { required: true, message: "管理员密码不允许为空", trigger: "blur" },
           {
             pattern: /^[a-zA-Z]\w{7,17}$/,
-            message: "以字母开头，长度在 8 到 18 个字符之间，只能包含字母、数字和下划线",
+            message:
+              "以字母开头，长度在 8 到 18 个字符之间，只能包含字母、数字和下划线",
             trigger: ["blur", "change"]
           }
         ]
