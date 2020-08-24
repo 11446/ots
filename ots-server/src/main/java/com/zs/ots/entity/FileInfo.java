@@ -8,6 +8,7 @@ import java.util.Objects;
  * @description 文件信息
  */
 public class FileInfo {
+
     private String fileId;
     private String fileName;
     private String fileSize;
