@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!---->
+<mapper namespace="com.zs.ots.mapper.UserMapper">
+
+    <select id="verifyUserPwd" parameterType="java.lang.String" resultType="com.zs.ots.entity.User">
+        select
+            id,
+            uname,
+            upwd,
+            uaccount,
+            urole
+        from
+            user
+        where
+            id=#{uid} and upwd= #{upwd}
+    </select>
+<!--    验证新用户账号是否重复-->
+    <select id="validateNewAcc" parameterType="java.lang.String" resultType="com.zs.ots.entity.User" >
+        select
+            id
+        from
+            user
+        where
+            uaccount=#{newUserAcc}
+    </select>
+
+    <update id="updateUserPwd" parameterType="java.lang.String">
+        update
+            user
+        set
+            upwd = #{upwd}
+        where
+            id = #{uid}
+    </update>
+
+    <insert id="addUser" parameterType="com.zs.ots.entity.User">
+        insert into user(uname,uaccount, upwd,urole)
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="uname!=null || uname!=''">
+                #{uname},
+            </if>
+            <if test="uaccount!=null || uaccount!=''">
+                #{uaccount},
+            </if>
+            <if test="upwd!=null || upwd!=''">
+                #{upwd},
+            </if>
+            <if test="urole!=null || urole!=''">
+                #{urole}
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

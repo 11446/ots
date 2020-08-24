@@ -1,0 +1,35 @@
+# 配置pagehelper分页插件参数
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+# 数据库连接配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ots?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: zs962464
+#    配置连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池初始化配置
+
+    druid:
+      initialSize: 8
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,logback
+      maxPoolPreparedStatementPerConnectionSize: 25
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
