@@ -1,4 +1,4 @@
-# 配置pagehelper参数
+# 配置pagehelper分页插件参数
 pagehelper:
   helperDialect: mysql
   reasonable: true
