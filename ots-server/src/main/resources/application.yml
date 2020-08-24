@@ -4,6 +4,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
 # 数据库连接配置
 spring:
   datasource:
